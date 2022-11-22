@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <!-- <meta http-equiv="X-UA-Compatible" content="IE=edge" /> -->
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <meta name="description" content="" />
+    <meta name="author" content="" />
+    <title>Vah Admin</title>
+    <link href="../css/sb-admin.css" rel="stylesheet" />
+    <link rel="stylesheet" href="../css/custom.css" />
+    <link rel="stylesheet" href="../css/bootstrap.min.css" />
+    <!--Fonts-->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+
+<body id="page-top">
+    <div class="container-fluid sign-in" style="padding: 0px;">
+        <div class="row" style="height:100vh;">
+            <div class="col-sm-6 img">
+                <img src="../img/logo.png" />
+            </div>
+            <div class="col-sm-6 form">
+                <div class="main">
+                    <h2>SIGN IN</h2>
+                    <p>Please enter your details to login to the VA admin board</p>
+
+                    <div class="forms-app">
+
+                        <form>
+                            <div class="icons">
+                                <label class="full-width">EMAIL ADDRESS</label>
+                                <i><img src="../img/login.png" /></i>
+                                <input type="email" placeholder="ENTER EMAIL..." required/>
+                            </div>
+                            <div class="icons">
+                                <label class="full-width">PASSWORD</label>
+                                <i><img src="../img/password.png" /></i>
+                                <input type="text" placeholder="ENTER PASSWORD..." required id="hide" />
+
+                                <i class="show"><img src="../img/eye.png" /></i>
+                            </div>
+
+                            <div class="icons">
+                                <label class="full-width">GROUP</label>
+                                <i><img src="../img/group.png" /></i>
+                                <select required>
+                                    <option>GROUP A - NAME</option>
+                                    <option>GROUP A - NAME</option>
+                                    <option>GROUP A - NAME</option>
+                                </select>
+                            </div>
+                            <p class="forgot-passowrd"><a href="#">FORGOT PASSWORD?</a></p>
+                            <button type="submit">SIGN IN</button>
+
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    </div>
+</body>
+<!-- Scroll to Top Button-->
+<a class="scroll-to-top rounded" href="#page-top">
+    <i class="fas fa-angle-up"></i>
+</a>
+
+<!-- Logout Modal-->
+<div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Ready to Leave?</h5>
+                <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">×</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                Select "Logout" below if you are ready to end your current session.
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
+                <a class="btn btn-primary" href="login.html">Logout</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<!--select zone popup-->
+<div class="modal fade selectzone-popup" id="selectZone" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">SELECT ZONE</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div class="col-sm-12 search">
+                    <input type="text" placeholder="Search zone names..." />
+                    <button><img src="../img/search.png" /></button>
+                </div>
+
+                <table>
+                    <thead>
+                        <tr>
+                            <th>ZONE ID</th>
+                            <th>ZONE NAME</th>
+                            <th>REGION</th>
+                            <th>SITE</th>
+                            <th>AREA</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>
+                                <input type="radio" name="zoneID" />
+                                <span>12345</span>
+                            </td>
+                            <td>ZONE 1</td>
+                            <td>JP</td>
+                            <td>KIX</td>
+                            <td>IKEDA</td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <input type="radio" name="zoneID" />
+                                <span>12345</span>
+                            </td>
+                            <td>ZONE 1</td>
+                            <td>JP</td>
+                            <td>KIX</td>
+                            <td>IKEDA</td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <input type="radio" name="zoneID" />
+                                <span>12345</span>
+                            </td>
+                            <td>ZONE 1</td>
+                            <td>JP</td>
+                            <td>KIX</td>
+                            <td>IKEDA</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">CANCEL</button>
+                <button type="button" class="btn btn-primary">OKAY</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="../js/jquery.min.js"></script>
+<script src="../js/custom.js"></script>
+<script src="../js/bootstrap.bundle.min.js"></script>
+
+</body>
+
+</html>

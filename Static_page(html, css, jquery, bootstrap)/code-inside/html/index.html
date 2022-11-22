@@ -1,0 +1,884 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <!-- <meta http-equiv="X-UA-Compatible" content="IE=edge" /> -->
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <meta name="description" content="" />
+    <meta name="author" content="" />
+    <script src="http://maps.google.com/maps/api/js?key=YOUR_API_KEY" type="text/javascript"></script>
+
+    <title>Vah Admin</title>
+    <link href="../css/sb-admin.css" rel="stylesheet" />
+    <link rel="stylesheet" href="../css/custom.css" />
+    <link rel="stylesheet" href="../css/bootstrap.min.css" />
+    <link rel="stylesheet" type="text/css" href="../css/daterangepicker.css" />
+
+    <!--Fonts-->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+
+</head>
+
+<body id="page-top">
+    <!-- Page Wrapper -->
+    <div id="wrapper">
+        <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
+            <a class="sidebar-brand d-flex align-items-center justify-content-center pb-5" href="index.html">
+                <div class="sidebar-brand-icon">
+                    <div class="sidebar-brand-text pl-2 pr-2">
+                        <img src="../img/logo.png" class="full-width" alt="logo" />
+                    </div>
+                </div>
+            </a>
+
+            <li class="nav-item active">
+                <a class="nav-link" href="location-setting.html">
+                    <img src="../img/machine.png" />
+                    <span>CREATE MACHINE</span>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="machine-list.html">
+                    <img src="../img/update.png" />
+                    <span>UPDATE MACHINE</span>
+                </a>
+            </li>
+
+            <li class="nav-item">
+                <a class="nav-link" href="create-zone.html">
+                    <img src="../img/create.png" />
+                    <span>CREATE ZONE</span>
+                </a>
+            </li>
+
+            <li class="nav-item">
+                <a class="nav-link" href="update-zone.html">
+                    <img src="../img/ZONES.png" />
+                    <span>UPDATE ZONE</span>
+                </a>
+            </li>
+
+            <li class="nav-item">
+                <a class="nav-link" href="api-setting.html">
+                    <img src="../img/settings.png" />
+                    <span>API SETTINGS</span>
+                </a>
+            </li>
+
+
+            <li class="nav-item">
+                <a class="nav-link" href="group-view.html">
+                    <img src="../img/grview.png" />
+                    <span>GROUP VIEW</span>
+                </a>
+            </li>
+
+            <li class="nav-item">
+                <a class="nav-link" href="machine-list.html">
+                    <img src="../img/mv.png" />
+                    <span>MACHINE VIEW</span>
+                </a>
+            </li>
+
+            <li class="nav-item">
+                <a class="nav-link" href="index.html">
+                    <img src="../img/mv.png" />
+                    <span>HOME</span>
+                </a>
+            </li>
+
+            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#selectZone">SELECT ZONE POPUP</button>
+            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#serverPopup">ADD SERVER POPUP</button>
+            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#mapPopup">GOOGLE MAP POPUP</button>
+            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#grDetailPopup">GROUP DETAIL POPUP</button>
+            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#healthCdePopup">HEALTH CODE POPUP</button>
+            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#locationDetailPopup">LOCATION DETAIL POPUP</button>
+            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#selectGroupPopup">SELECT GROUP POPUP</button>
+            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#svgViewerPopup">SVG VIEWER POPUP</button>
+            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#settingsPopup">SETTING POPUP</button>
+            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#serverOrderPopup">SERVER ORDER POPUP</button>
+            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#successPopup">SUCCESS POPUP</button>
+        </ul>
+        <!-- End of Sidebar -->
+
+        <!-- Content Wrapper -->
+        <div id="content-wrapper" class="d-flex flex-column">
+            <!-- Main Content -->
+            <div id="content">
+                <!-- Topbar -->
+                <nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top">
+                    <!-- Sidebar Toggle (Topbar) -->
+                    <button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3">
+                        <i class="fa fa-bars"></i>
+                    </button>
+
+                    <!-- Topbar Search -->
+                    <div class="heading">
+                        <h2>MACHINE SETTINGS / PROFILE CREATION</h2>
+                    </div>
+
+                    <!-- Topbar Navbar -->
+                    <ul class="navbar-nav ml-auto">
+                        <!-- Nav Item - User Information -->
+                        <li class="nav-item dropdown no-arrow">
+                            <div class="dropdown">
+                                <a href="#" id="userDropdown" class="dropdown-toggle pointer" data-bs-toggle="dropdown">
+                                    <img class="img-profile rounded-circle pointer" src="../img/login.png" />
+                                </a>
+                                <div class="dropdown-menu">
+                                    <div class="selectzone-popup settings-popups">
+                                        <div class="modal-dialog">
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <h5 class="modal-title" id="exampleModalLabel">SETTINGS</h5>
+                                                    <!-- <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button> -->
+                                                </div>
+                                                <div class="modal-body">
+                                                    <main>
+                                                        <ul>
+                                                            <li>
+                                                                <a href="#"><img src="../img/users.png" /> EDIT PROFILE <img src="../img/arrow.png" /></a>
+                                                            </li>
+                                                            <li>
+                                                                <a href="#"><img src="../img/ets.png" /> APP SETTINGS <img src="../img/arrow.png" /></a>
+                                                            </li>
+                                                            <li>
+                                                                <a href="#"><img src="../img/sign-out.png" /> SIGN OUT</a>
+                                                            </li>
+                                                        </ul>
+                                                    </main>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            </a>
+                        </li>
+                    </ul>
+                </nav>
+                <!-- End of Topbar -->
+
+                <!-- Begin Page Content -->
+                <div class="container-fluid profile-page">
+                    <div class="row">
+                        <div class="col-sm-5 right-separate">
+                            <h3>SELECT FBX OR SVG</h3>
+                            <div class="main shadows">
+                                <label class="profile-select">
+                                    <input type="text" class="value" placeholder="UPLOAD FROM STORAGE" /> 
+                                    <input type="file" id="select-files"/>
+                                    <button><img src="../img/upload.png" /></button>
+                                </label>
+
+                                <div class="select-files-li">
+                                    <!--select from list-->
+                                    <h4>OR SELECT FBX FROM LIST</h4>
+                                    <ul>
+                                        <li class="active">
+                                            <label>
+                                                <input type="radio" name="fbx" checked/>
+                                                <span>3D MODEL 1.FBX</span>
+                                            </label>
+                                            <span class="delete"><img src="../img/delete.png" /></span>
+                                        </li>
+                                        <li>
+                                            <label>
+                                                <input type="radio" name="fbx"/>
+                                                <span>3D MODEL 2.FBX</span>
+                                            </label>
+                                            <span class="delete"><img src="../img/delete.png" /></span>
+                                        </li>
+                                        <li>
+                                            <label>
+                                                <input type="radio" name="fbx"/>
+                                                <span>3D MODEL 3.FBX</span>
+                                            </label>
+                                            <span class="delete"><img src="../img/delete.png" /></span>
+                                        </li>
+                                        <li>
+                                            <label>
+                                                <input type="radio" name="fbx"/>
+                                                <span>3D MODEL 4.FBX</span>
+                                            </label>
+                                            <span class="delete"><img src="../img/delete.png" /></span>
+                                        </li>
+                                    </ul>
+
+                                    <!--select from svg list-->
+                                    <h4>OR SELECT SVG FROM LIST</h4>
+                                    <ul>
+                                        <li>
+                                            <label>
+                                                <input type="radio" name="svg"/>
+                                                <span>3D MODEL 1.SVG</span>
+                                            </label>
+                                            <span class="delete"><img src="../img/delete.png" /></span>
+                                        </li>
+                                        <li>
+                                            <label>
+                                                <input type="radio" name="svg"/>
+                                                <span>3D MODEL 2.SVG</span>
+                                            </label>
+                                            <span class="delete"><img src="../img/delete.png" /></span>
+                                        </li>
+                                        <li>
+                                            <label>
+                                                <input type="radio" name="svg"/>
+                                                <span>3D MODEL 3.SVG</span>
+                                            </label>
+                                            <span class="delete"><img src="../img/delete.png" /></span>
+                                        </li>
+                                        <li>
+                                            <label>
+                                                <input type="radio" name="svg"/>
+                                                <span>3D MODEL 4.SVG</span>
+                                            </label>
+                                            <span class="delete"><img src="../img/delete.png" /></span>
+                                        </li>
+                                    </ul>
+                                </div>
+
+                                <button type="submit" class="btn-secondary">Select</button>
+                            </div>
+                        </div>
+                        <div class="col-sm-7 border-left">
+                            <div class="main shadows">
+                                <h3>MACHINE ID</h3>
+
+                                <form>
+                                    <div class="fm full-width mb-4">
+                                        <label>MACHINE NAME</label>
+                                        <input type="text" placeholder="MACHINE A" class="form-control full-width" />
+                                    </div>
+                                    <div class="fm">
+                                        <div class="row mb-4">
+                                            <div class="col-sm-9">
+                                                <label>MACHINE TYPE</label>
+                                                <select class="form-control full-width">
+                                                    <option>TYPE A</option>
+                                                    <option>TYPE B</option>
+                                                    <option>TYPE C</option>
+                                                </select>
+                                            </div>
+                                            <div class="col-sm-3 inc">
+                                                <label>PRIORITY SCORE</label>
+                                                <div class="container">
+                                                    <div class="button-container">
+                                                        <button class="cart-qty-plus" type="button" value="+">+</button>
+                                                        <input type="text" name="qty" class="qty" maxlength="12" value="0" class="input-text qty" />
+
+                                                        <button class="cart-qty-minus" type="button" value="-">-</button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row mb-4">
+                                            <div class="col-sm-12 calebdar flex">
+                                                <label class="full-width">ACTIVE SINCE</label>
+                                                <input class="form-control" type="text" placeholder="Year" id="year" />
+                                                <input class="form-control" type="text" placeholder="Months" id="month" />
+                                                <input class="form-control" type="text" placeholder="Date" id="date" />
+                                                <span> <img src="../img/calendar.png" id="daterange"/><input type="text" class="hide" id="daterange" name="daterange" value="01/01/2018 - 01/15/2018" /></span>
+                                                <!--daterange slider-->
+
+                                            </div>
+                                        </div>
+
+                                        <div class="row mb-4">
+                                            <div class="col-sm-3 inc">
+                                                <label class="mb-2">MINIMUM PEOPLE</label>
+                                                <div class="container">
+                                                    <div class="button-container">
+                                                        <button class="cart-qty-plus" type="button" value="+">+</button>
+                                                        <input type="text" name="qty" class="qty" maxlength="12" value="0" class="input-text qty" />
+
+                                                        <button class="cart-qty-minus" type="button" value="-">-</button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-sm-3 inc">
+                                                <label class="mb-2">MAXIMUM PEOPLE</label>
+                                                <div class="container">
+                                                    <div class="button-container">
+                                                        <button class="cart-qty-plus" type="button" value="+">+</button>
+                                                        <input type="text" name="qty" class="qty" maxlength="12" value="0" class="input-text qty" />
+
+                                                        <button class="cart-qty-minus" type="button" value="-">-</button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="full-width gender-qu mb-5">
+                                            <h4 class="full-width">REQUIRED RONTGEN SCORE</h4>
+                                            <label class="switch">
+                                                <input type="text" class="first" placeholder="8" value="8"/>
+                                                <i>ON</i>
+                                                <i>OFF</i>
+                                                <input type="checkbox">
+                                                <span class="slider round"></span>
+                                                <i class="texts">EASY MODE</i>
+                                            </label>
+
+                                            <label class="switch">
+                                                <input type="text" class="first" placeholder="7" value="7" />
+                                                <i>ON</i>
+                                                <i>OFF</i>
+                                                <input type="checkbox">
+                                                <span class="slider round"></span>
+
+                                                <i class="texts">HARD MODE</i>
+                                            </label>
+                                            <label class="switch">
+                                                <input type="text" class="first" placeholder="4" value="4" />
+                                                <i>ON</i>
+                                                <i>OFF</i>
+                                                <input type="checkbox">
+                                                <span class="slider round"></span>
+                                                <i class="texts">CREATE MODE</i>
+
+                                            </label>
+                                            <label class="switch">
+                                                <input type="text" class="first" placeholder="5" value="5" />
+                                                <i>ON</i>
+                                                <i>OFF</i>
+                                                <input type="checkbox" >
+                                                <span class="slider round"></span>
+                                                <i class="texts">A.I. BATTLE MODE</i>
+                                            </label>
+                                        </div>
+
+                                        <div class="full-width gender-qu mb-4">
+                                            <h4 class="full-width">GENDER EQUALITY</h4>
+                                            <label>
+                                                <input type="radio" name="strict"/>
+                                                <span>STRICT</span>
+                                            </label>
+                                            <label>
+                                                <input type="radio" name="strict"/>
+                                                <span>MODERATE</span>
+                                            </label>
+                                            <label>
+                                                <input type="radio" checked name="strict"/>
+                                                <span>SEPARATE</span>
+                                            </label>
+                                            <label>
+                                                <input type="radio" name="strict"/>
+                                                <span>OFF</span>
+                                            </label>
+                                        </div>
+
+                                        <div class="full-width gender-qu">
+                                            <h4 class="full-width">MORE OPTIONS</h4>
+
+                                            <label>
+                                                <input type="radio" checked name="either"/>
+                                                <span>EITHER</span>
+                                            </label>
+                                            <label>
+                                                <input type="radio" name="either"/>
+                                                <span>MALE ONLY</span>
+                                            </label>
+                                            <label>
+                                                <input type="radio" name="either"/>
+                                                <span>FEMALE ONLY</span>
+                                            </label>
+                                        </div>
+                                    </div>
+
+
+
+                                </form>
+
+                                <div class="full-width btns mt-4 text-center">
+                                    <button class="cancel">CANCEL</button>
+                                    <button type="submit" class="next">NEXT</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- End of Main Content -->
+
+            <!-- Footer -->
+            <footer class="sticky-footer bg-white">
+                <div class="container my-auto">
+                    <div class="copyright text-center my-auto">
+                        <span>Copyright &copy; Your Website 2021</span>
+                    </div>
+                </div>
+            </footer>
+            <!-- End of Footer -->
+        </div>
+        <!-- End of Content Wrapper -->
+    </div>
+    <!-- End of Page Wrapper -->
+
+    <!-- Scroll to Top Button-->
+    <a class="scroll-to-top rounded" href="#page-top">
+        <i class="fas fa-angle-up"></i>
+    </a>
+
+    <!-- Logout Modal-->
+    <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Ready to Leave?</h5>
+                    <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">×</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    Select "Logout" below if you are ready to end your current session.
+                </div>
+                <div class="modal-footer">
+                    <button class="btn btn-secondary" type="button" data-dismiss="modal">
+                        Cancel
+                    </button>
+                    <a class="btn btn-primary" href="login.html">Logout</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+    <!--select zone popup-->
+    <div class="modal fade selectzone-popup" id="selectZone" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">SELECT ZONE</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="col-sm-12 search">
+                        <input type="text" placeholder="Search zone names..." />
+                        <button><img src="../img/search.png" /></button>
+                    </div>
+
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>ZONE ID</th>
+                                <th>ZONE NAME</th>
+                                <th>REGION</th>
+                                <th>SITE</th>
+                                <th>AREA</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>
+                                    <input type="radio" name="zoneID" />
+                                    <span>12345</span>
+                                </td>
+                                <td>ZONE 1</td>
+                                <td>JP</td>
+                                <td>KIX</td>
+                                <td>IKEDA</td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <input type="radio" name="zoneID" />
+                                    <span>12345</span>
+                                </td>
+                                <td>ZONE 1</td>
+                                <td>JP</td>
+                                <td>KIX</td>
+                                <td>IKEDA</td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <input type="radio" name="zoneID" />
+                                    <span>12345</span>
+                                </td>
+                                <td>ZONE 1</td>
+                                <td>JP</td>
+                                <td>KIX</td>
+                                <td>IKEDA</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">CANCEL</button>
+                    <button type="button" class="btn btn-primary">OKAY</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--add server popup-->
+
+    <div class="modal fade selectzone-popup" id="serverPopup" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">ADD SERVER</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <!-- <div class="col-sm-12 search">
+                        <input type="text" placeholder="Search zone names..." />
+                        <button><img src="../img/search.png" /></button>
+                    </div> -->
+                    <div class="main">
+                        <p>
+                            <label>NAME</label>
+                            <input type="text" placeholder="TEST NAME" />
+                        </p>
+                        <p>
+                            <label>API KEY</label>
+                            <input type="text" placeholder="API KEY" />
+                        </p>
+                        <p>
+                            <label>SERVER IP</label>
+                            <input type="text" placeholder="34.84.85.115" />
+                        </p>
+                        <p>
+                            <label>REGION</label>
+                            <input type="text" placeholder="JPN" />
+                        </p>
+                        <span>* Use alpha3 codes from www.iban.com/country-codes</span>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">CANCEL</button>
+                    <button type="button" class="btn btn-primary">POST</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!--google map popup-->
+    <div class="modal fade selectzone-popup google-maps-popup" id="mapPopup" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-body">
+                    <div class="main">
+                        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d27656441.247150186!2d118.98864520740922!3d32.2034108067305!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x34674e0fd77f192f%3A0xf54275d47c665244!2sJapan!5e0!3m2!1sen!2sin!4v1667108955200!5m2!1sen!2sin"
+                            width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">CANCEL</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!--svgViewerPopup-->
+    <div class="modal fade selectzone-popup  svgViewerPopup" id="svgViewerPopup" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">SVG VIEWER</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="main">
+                        <img src="../img/svg-view.png" />
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">CLOSE</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!--detail group popup-->
+    <div class="modal fade selectzone-popup grDetailPopup" id="grDetailPopup" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title uppercase" id="exampleModalLabel">v2/public/group</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="main">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>GROUP ID</th>
+                                    <th>NAME</th>
+                                    <th>STATUS</th>
+                                    <th>LANGUAGE</th>
+                                    <th>REGION</th>
+                                    <th>SITES</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>ABCD1234</td>
+                                    <td>GROUP 1</td>
+                                    <td>0</td>
+                                    <td>JP</td>
+                                    <td>JP</td>
+                                    <td>KIX</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-primary">OKAY</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!--health code popup-->
+    <div class="modal fade selectzone-popup healthCdePopup" id="healthCdePopup" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title uppercase" id="exampleModalLabel">v2/machine/id/MACHINE HEALTH CODE</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="main">
+                        <p>HEALTH CODE</p>
+                        <span>E001</span>
+                        <p>LAST GET DATE</p>
+                        <span>2022-07-28  23:22:10</span>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-primary">GET</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!--location Detail Popup-->
+    <div class="modal fade selectzone-popup grDetailPopup locationDetailPopup" id="locationDetailPopup" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title uppercase" id="exampleModalLabel">v2/machine/location/id</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="main">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>ID</th>
+                                    <th>1</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>REGION</td>
+                                    <td><input type="text" placeholder="ENTER REGION HERE..." /></td>
+                                </tr>
+                                <tr>
+                                    <td>REGION</td>
+                                    <td></td>
+                                </tr>
+                                <tr>
+                                    <td>SITE</td>
+                                    <td></td>
+                                </tr>
+
+                                <tr>
+                                    <td>AREA</td>
+                                    <td></td>
+                                </tr>
+
+                                <tr>
+                                    <td>ZONE</td>
+                                    <td><span>*SELECT FROM ZONE LIST</span> <i>GET ZONE LIST =</i></td>
+                                </tr>
+                                <tr>
+                                    <td>LATITUDE</td>
+                                    <td><input type="text" placeholder="*OPTIONAL" /></td>
+                                </tr>
+                                <tr>
+                                    <td>LONGITUDE</td>
+                                    <td><input type="text" placeholder="*OPTIONAL" /></td>
+                                </tr>
+                                <tr>
+                                    <td>TAG</td>
+                                    <td></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">CANCEL</button>
+                    <button type="button" class="btn btn-primary">PUT</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!--select Group popup-->
+    <div class="modal fade selectzone-popup" id="selectGroupPopup" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">SELECT GROUP</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="col-sm-12 search">
+                        <input type="text" placeholder="Search zone names..." />
+                        <button><img src="../img/search.png" /></button>
+                    </div>
+
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>GROUP ID</th>
+                                <th>GROUP NAME</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>
+                                    <input type="checkbox" name="zoneID" />
+                                    <span>1</span>
+                                </td>
+                                <td>GROUP A </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <input type="checkbox" name="zoneID" />
+                                    <span>2</span>
+                                </td>
+                                <td>GROUP B </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <input type="checkbox" name="zoneID" />
+                                    <span>3</span>
+                                </td>
+                                <td>GROUP C </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <input type="checkbox" name="zoneID" />
+                                    <span>4</span>
+                                </td>
+                                <td>GROUP D </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">CANCEL</button>
+                    <button type="button" class="btn btn-primary">OKAY</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!--settings popup-->
+
+    <div class="modal fade selectzone-popup settings-popups" id="settingsPopup" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">SETTINGS</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <main>
+                        <ul>
+                            <li>
+                                <a href="#"><img src="../img/users.png" /> EDIT PROFILE <img src="../img/arrow.png" /></a>
+                            </li>
+                            <li>
+                                <a href="#"><img src="../img/ets.png" /> APP SETTINGS <img src="../img/arrow.png" /></a>
+                            </li>
+                            <li>
+                                <a href="#"><img src="../img/sign-out.png" /> SIGN OUT <img src="../img/arrow.png" /></a>
+                            </li>
+                        </ul>
+                    </main>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!--serverOrderPopup-->
+    <div class="modal fade selectzone-popup serverspopup" id="serverOrderPopup" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title uppercase" id="exampleModalLabel">v2/machine/id</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="main">
+                        <p>
+                            <label>SERVER CODE</label>
+                            <input type="text" placeholder="E001" />
+                        </p>
+                        <p>
+                            <label>SERVER ORDER ACTIVE DATE</label>
+                            <input type="datetime-local" placeholder="2012-12-30" />
+                        </p>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">CANCEL</button>
+                    <button type="button" class="btn btn-primary">POST</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+    <!--success code popup-->
+    <div class="modal fade selectzone-popup healthCdePopup" id="successPopup" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title uppercase" id="exampleModalLabel">SUCCESS</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="main">
+                        <p>STATUS</p>
+                        <span>Success:200</span>
+                        <p>TRIGGER MAIN</p>
+                        <span>#VA_AdminBoard</span>
+
+                        <p>TRIGGER SUB</p>
+                        <span>admin@samole.com</span>
+
+                        <p>UPDATED AT</p>
+                        <span>2021-12-30  02:23:59</span>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-primary">OKAY</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+    <script src="../js/jquery.min.js"></script>
+    <script src="../js/custom.js"></script>
+    <script src="../js/bootstrap.bundle.min.js"></script>
+    <script type="text/javascript" src="../js/moment.min.js"></script>
+    <script type="text/javascript" src="../js/daterangepicker.min.js"></script>
+
+
+</body>
+
+</html>
